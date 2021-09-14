@@ -6,7 +6,7 @@ class KMP:
     def __init__(self, url, parent):
         self.url = url
         self.parent = parent
-        self.short = "kmp"
+        self.short = "00kmp"
 
     def update(self):
         html = requests.get(self.url).text

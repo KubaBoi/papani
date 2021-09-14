@@ -9,7 +9,7 @@ class Buddha:
         self.parent = parent
         self.price = "99Kč"
         self.soupPrice = "20Kč"
-        self.short = "buddha"
+        self.short = "01buddha"
 
     def update(self):
         html = requests.get(self.url).content

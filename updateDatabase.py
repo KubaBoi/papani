@@ -1,27 +1,40 @@
 import json
 import os
 import datetime
+import time
 
 from restaurants.kmp import KMP
 from restaurants.buddha import Buddha
+from restaurants.ganesh import Ganesh
 
 class Updater:
-    def __init__(self):
+    def __init__(self, updateTime):
         self.services = []
+        self.updateTime = updateTime
         
         with open("./restaurants.json", "r") as f:
             urls = json.loads(f.read())
             
             self.services.append(KMP(urls["kmp"], self))
             self.services.append(Buddha(urls["buddha"], self))
+            self.services.append(Ganesh(urls["ganesh"], self))
 
         self.loadTemplates()
+
+    def runForever(self):
+        while True:
+            print("Updating database")
+            self.updateAll()
+            self.createHtmls()
+            print("Updated")
+            time.sleep(self.updateTime)
 
     def updateAll(self):
         for s in self.services:
             s.update()
 
     def createHtmls(self):
+        print("Creating htmls")
         path = "./database"
         for root, dirs, files in os.walk(path, topdown=False):
             for name in files:
@@ -40,7 +53,7 @@ class Updater:
             
             weekDay = int(date.strftime("%w")) - 1
             fileName = "index" + str(weekDay)
-            with open(f"web/{fileName}.html", "w", encoding="utf-8") as f:
+            with open(f"web/www/{fileName}.html", "w", encoding="utf-8") as f:
                 index = self.indexTemp
 
                 index = index.replace(f"$active{weekDay}$", "active")
@@ -78,16 +91,10 @@ class Updater:
                     index = index.replace("$content$", content)
                 f.write(index)
 
-
-
-
-
-
-
     #vytvori html pro cely tyden pro jednu restauraci
     def createHtml(self, data):
         short = data["short"]
-        with open(f"web/{short}.html", "w", encoding="utf-8") as f:
+        with open(f"web/www/{short}.html", "w", encoding="utf-8") as f:
 
             html = self.oneRestTemp.replace("$name$", data["name"])
             html = html.replace("$url$", data["url"])
@@ -115,19 +122,19 @@ class Updater:
             f.write(html)
 
     def loadTemplates(self):
-        with open("web/templates/oneRestaurantTemplate.html", "r", encoding="utf-8") as f:
+        with open("templates/oneRestaurantTemplate.html", "r", encoding="utf-8") as f:
             self.oneRestTemp = f.read()
 
-        with open("web/templates/tableTemplate.html", "r", encoding="utf-8") as f:
+        with open("templates/tableTemplate.html", "r", encoding="utf-8") as f:
             self.tableTemp = f.read()
 
-        with open("web/templates/lineTemplate.html", "r", encoding="utf-8") as f:
+        with open("templates/lineTemplate.html", "r", encoding="utf-8") as f:
             self.lineTemp = f.read()
 
-        with open("web/templates/indexTemplate.html", "r", encoding="utf-8") as f:
+        with open("templates/indexTemplate.html", "r", encoding="utf-8") as f:
             self.indexTemp = f.read()
 
-        with open("web/templates/restaurantTemplate.html", "r", encoding="utf-8") as f:
+        with open("templates/restaurantTemplate.html", "r", encoding="utf-8") as f:
             self.restTemp = f.read()
 
     def getJson(self, path):
