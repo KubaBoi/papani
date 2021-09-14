@@ -7,7 +7,9 @@ class Buddha:
     def __init__(self, url, parent):
         self.url = url
         self.parent = parent
-        self.price = 100
+        self.price = "99Kč"
+        self.soupPrice = "20Kč"
+        self.short = "buddha"
 
     def update(self):
         html = requests.get(self.url).content
@@ -20,9 +22,12 @@ class Buddha:
         days = data.split("<br/><b>")[1:]
 
         jsonData = {}
-        weekDays = ["PONDĚLÍ", "ÚTERÝ", "STŘEDA", "ČTVRTEK", "PÁTEK"]
+        jsonData["name"] = "BUDDHA"
+        jsonData["url"] = self.url
+        jsonData["short"] = self.short
+        jsonData["days"] = []
 
-        for i, dayName in enumerate(weekDays):
+        for i in range(5):
             index = math.floor(i / 2)
             dayData = self.parent.replaceStr(days[index], ["\r", "\n", "<i>", "</i>", "<b>", "</b>"])
             dayData = dayData.replace("\xa0", " ")
@@ -47,11 +52,12 @@ class Buddha:
                     veg = True
 
             dayJsonData = {}
-            dayJsonData["food"] = foodJsonData
             dayJsonData["soup"] = "to tam není :("
+            dayJsonData["soupPrice"] = self.soupPrice
+            dayJsonData["food"] = foodJsonData
 
-            jsonData[dayName] = dayJsonData
+            jsonData["days"].append(dayJsonData)
 
-        with open("database/buddha.json", "w") as f:
+        with open(f"database/{self.short}.json", "w") as f:
             f.write(json.dumps(jsonData))
      

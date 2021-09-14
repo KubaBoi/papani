@@ -6,6 +6,7 @@ class KMP:
     def __init__(self, url, parent):
         self.url = url
         self.parent = parent
+        self.short = "kmp"
 
     def update(self):
         html = requests.get(self.url).text
@@ -15,13 +16,19 @@ class KMP:
 
         days = food.split("<p>Rezervace: 725 339 926</p>")[0].split("<p><strong>")[1:]
         jsonData = {}
+        jsonData["name"] = "Klub Malých Pivovarů"
+        jsonData["url"] = self.url
+        jsonData["short"] = self.short
+        jsonData["days"] = []
 
         for day in days:
 
             dayData = day.replace("<br/>\n", "").replace("\xa0", "").split("<strong>")
 
             dayJsonData = {}
-            dayJsonData["soup"] = dayData[1].split("</strong>")[1]
+            soupPrice = dayData[1].split("</strong>")[1].split(" ")[-1]
+            dayJsonData["soup"] = dayData[1].split("</strong>")[1].replace(soupPrice, "").strip()
+            dayJsonData["soupPrice"] = soupPrice
 
             dayJsonData["food"] = []
             for f in dayData[2:]:
@@ -31,9 +38,7 @@ class KMP:
                 
                 dayJsonData["food"].append((name, price)) 
 
+            jsonData["days"].append(dayJsonData)
 
-            dayName = day.split(":")[0]
-            jsonData[dayName] = dayJsonData
-
-        with open("database/kmp.json", "w") as f:
+        with open(f"database/{self.short}.json", "w") as f:
             f.write(json.dumps(jsonData))     
