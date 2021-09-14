@@ -27,7 +27,7 @@ class Server(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.end_headers()
 
-        with open(f"web/www/{file}", "r", encoding="utf-8") as f:
+        with open(f"web/{file}", "r", encoding="utf-8") as f:
             content = f.read().replace("$actual$", f"index{weekDay}.html")
             self.wfile.write(bytes(content, "utf-8"))
 

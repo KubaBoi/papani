@@ -1,5 +1,5 @@
-web/www/*
-!web/www/.gitkeep 
+web/*
+!web/sheet.css 
 
 database/*
 !database/.gitkeep

@@ -40,6 +40,7 @@ class Updater:
             for name in files:
                 file = f"{path}/{name}"
                 data = self.getJson(file)
+                if (data == ""): continue
                 self.createHtml(data)
 
         self.createIndexes()
@@ -53,7 +54,7 @@ class Updater:
             
             weekDay = int(date.strftime("%w")) - 1
             fileName = "index" + str(weekDay)
-            with open(f"web/www/{fileName}.html", "w", encoding="utf-8") as f:
+            with open(f"web/{fileName}.html", "w", encoding="utf-8") as f:
                 index = self.indexTemp
 
                 index = index.replace(f"$active{weekDay}$", "active")
@@ -68,6 +69,7 @@ class Updater:
                     for name in files:
                         file = f"{path}/{name}"
                         data = self.getJson(file)
+                        if (data == ""): continue
 
                         rest = self.restTemp.replace("$name$", data["name"])
                         rest = rest.replace("$url$", data["url"])
@@ -94,7 +96,7 @@ class Updater:
     #vytvori html pro cely tyden pro jednu restauraci
     def createHtml(self, data):
         short = data["short"]
-        with open(f"web/www/{short}.html", "w", encoding="utf-8") as f:
+        with open(f"web/{short}.html", "w", encoding="utf-8") as f:
 
             html = self.oneRestTemp.replace("$name$", data["name"])
             html = html.replace("$url$", data["url"])
@@ -138,6 +140,9 @@ class Updater:
             self.restTemp = f.read()
 
     def getJson(self, path):
+        if (path.find(".gitkeep") != -1):
+            return ""
+
         with open(path, "r") as f:
             return json.loads(f.read())
 
