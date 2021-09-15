@@ -6,7 +6,7 @@ class Martinska:
     def __init__(self, url, parent):
         self.url = url
         self.parent = parent
-        self.short = "04martinska"
+        self.short = "03martinska"
 
     def update(self):
         html = requests.get(self.url).text
