@@ -10,6 +10,7 @@ updateTime = 14400
 update = Updater(updateTime)
 update.updateAll()
 update.createHtmls()
+print("OUJEEE")
 
 
 """
