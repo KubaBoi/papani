@@ -8,12 +8,13 @@ from updateDatabase import Updater
 updateTime = 14400
 
 update = Updater(updateTime)
-#update.updateAll()
-#update.createHtmls()
+update.updateAll()
+update.createHtmls()
 
 
+"""
 hostName = "localhost"
-hostPort = 8000
+hostPort = 80
 
 myServer = HTTPServer((hostName, hostPort), Server)
 print(time.asctime(), f"Server Starts - {hostName}:{hostPort}")
@@ -27,3 +28,4 @@ except KeyboardInterrupt:
 
 myServer.server_close()
 print(time.asctime(), f"Server Stops - {hostName}:{hostPort}")
+"""

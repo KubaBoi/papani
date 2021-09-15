@@ -57,6 +57,10 @@ class Updater:
             with open(f"web/{fileName}.html", "w", encoding="utf-8") as f:
                 index = self.indexTemp
 
+                today = datetime.date.today()
+                actualWeekDay = str(int(today.strftime("%w")) - 1)
+                index = index.replace("$actual$", f"index{actualWeekDay}.html")
+
                 index = index.replace(f"$active{weekDay}$", "active")
                 for i in range(5):
                     index = index.replace(f"$active{i}$", "unactive")
@@ -100,6 +104,10 @@ class Updater:
 
             html = self.oneRestTemp.replace("$name$", data["name"])
             html = html.replace("$url$", data["url"])
+
+            today = datetime.date.today()
+            actualWeekDay = str(int(today.strftime("%w")) - 1)
+            html = html.replace("$actual$", f"index{actualWeekDay}.html")
 
             today = datetime.date.today()
             dates = [today + datetime.timedelta(days=i) for i in range(0 - today.weekday(), 5 - today.weekday())]
