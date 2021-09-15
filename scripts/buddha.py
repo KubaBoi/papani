@@ -29,7 +29,7 @@ class Buddha:
 
         for i in range(5):
             index = math.floor(i / 2)
-            dayData = self.parent.replaceStr(days[index], ["\r", "\n", "<i>", "</i>", "<b>", "</b>"])
+            dayData = self.parent.removeStr(days[index], ["\r", "\n", "<i>", "</i>", "<b>", "</b>"])
             dayData = dayData.replace("\xa0", " ")
 
             foods = dayData.split("</table>")[0].split(".")[1:]
