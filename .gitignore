@@ -1,3 +1,5 @@
+web/*
+!web/sheet.css
 database/*
 !database/.gitkeep
 .idea
