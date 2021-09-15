@@ -2,9 +2,9 @@ import json
 import os
 import datetime
 
-from restaurants.kmp import KMP
-from restaurants.buddha import Buddha
-from restaurants.ganesh import Ganesh
+from scripts.kmp import KMP
+from scripts.buddha import Buddha
+from scripts.ganesh import Ganesh
 
 class Updater:
     def __init__(self):
