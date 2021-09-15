@@ -16,11 +16,11 @@ class Updater:
         with open("./restaurants.json", "r") as f:
             urls = json.loads(f.read())
             
-            #self.services.append(KMP(urls["kmp"], self))
-            #self.services.append(Buddha(urls["buddha"], self))
-            #self.services.append(Ganesh(urls["ganesh"], self))
-            #self.services.append(Martinska(urls["martinska"], self))
-            #self.services.append(Kathmandu(urls["kathmandu"], self))
+            self.services.append(KMP(urls["kmp"], self))
+            self.services.append(Buddha(urls["buddha"], self))
+            self.services.append(Ganesh(urls["ganesh"], self))
+            self.services.append(Martinska(urls["martinska"], self))
+            self.services.append(Kathmandu(urls["kathmandu"], self))
             self.services.append(Umansfelda(urls["umansfelda"], self))
 
         self.loadTemplates()
