@@ -4,6 +4,7 @@
     --textColor: #000000;
     --backgroundColor: #ffffff;
     --evenLine: #aed3a4;
+    --lastUpdateColor: #aeaeae;
 }
 
 body {
@@ -57,7 +58,11 @@ ul {
   }
 
   button:hover {
-      background-color: var(--color2);
+    background-color: var(--color2);
+  }
+
+  p.lastUpdate {
+    color: var(--lastUpdateColor);
   }
 
 table {
