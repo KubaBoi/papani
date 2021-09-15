@@ -3,9 +3,6 @@ name: python app
 on:
   schedule:
     - cron: '10 * * * *' # runs at 10:00 UTC everyday
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
