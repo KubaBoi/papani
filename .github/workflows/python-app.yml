@@ -2,7 +2,7 @@ name: python app
 
 on:
   schedule:
-    - cron: '* 1 * * *' # runs at 10:00 UTC everyday
+    - cron: '10 * * * *' # runs at 10:00 UTC everyday
 
 jobs:
   build:
