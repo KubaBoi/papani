@@ -4,7 +4,7 @@
     --textColor: #000000;
     --backgroundColor: #ffffff;
     --evenLine: #aed3a4;
-    --lastUpdateColor: #aeaeae;
+    --lastUpdateColor: #000000;
 }
 
 body {
@@ -67,7 +67,7 @@ ul {
   p.lastUpdate {
     color: var(--lastUpdateColor);
     position: absolute;
-    right: 0;
+    right: 12px;
   }
 
 table {
