@@ -101,6 +101,7 @@ class Updater:
 
                         content += rest
                     index = index.replace("$content$", content)
+                    index = index.replace("$lastUpdate$", self.lastUpdate())
                 f.write(index)
 
     #vytvori html pro cely tyden pro jednu restauraci
@@ -135,6 +136,7 @@ class Updater:
                 content += table
 
             html = html.replace("$content$", content)
+            html = html.replace("$lastUpdate$", self.lastUpdate())
             f.write(html)
 
     def loadTemplates(self):
@@ -164,3 +166,6 @@ class Updater:
         for a in arrStr:
             string = string.replace(a, "")
         return string
+
+    def lastUpdate(self):
+        return "Last update:" + datetime.datetime.now().strftime("%S-%M-%H-%d-%m-%y")
