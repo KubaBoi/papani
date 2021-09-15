@@ -44,7 +44,7 @@ class Updater:
 
     #vytvori index
     def createIndex(self):
-        today = datetime.date.today()
+        today = self.today()
         actualWeekDay = str(int(today.strftime("%w")) - 1)
         html = f"<head></head><body><script>window.location.href = \"web/index{actualWeekDay}.html\";</script></body>"
 
@@ -53,7 +53,7 @@ class Updater:
 
     #vytvori index (jeden den pro vsechny restaurace)
     def createIndexes(self):
-        today = datetime.date.today()
+        today = self.today()
         dates = [today + datetime.timedelta(days=i) for i in range(0 - today.weekday(), 5 - today.weekday())]
 
         for date in dates:
@@ -63,7 +63,6 @@ class Updater:
             with open(f"web/{fileName}.html", "w", encoding="utf-8") as f:
                 index = self.indexTemp
 
-                today = datetime.date.today()
                 actualWeekDay = str(int(today.strftime("%w")) - 1)
                 index = index.replace("$actual$", f"index{actualWeekDay}.html")
 
@@ -112,11 +111,10 @@ class Updater:
             html = self.oneRestTemp.replace("$name$", data["name"])
             html = html.replace("$url$", data["url"])
 
-            today = datetime.date.today()
+            today = self.today()
             actualWeekDay = str(int(today.strftime("%w")) - 1)
             html = html.replace("$actual$", f"index{actualWeekDay}.html")
 
-            today = datetime.date.today()
             dates = [today + datetime.timedelta(days=i) for i in range(0 - today.weekday(), 5 - today.weekday())]
 
             content = ""
@@ -167,6 +165,9 @@ class Updater:
             string = string.replace(a, "")
         return string
 
+    def today(self):
+        return datetime.datetime.now() + datetime.timedelta(hours = 2)
+
     def lastUpdate(self):
-        time = datetime.datetime.now() + datetime.timedelta(hours = 2)
+        time = self.today()
         return "Last update: " + time.strftime("%H:%M:%S-%d.%m.%y")
