@@ -34,13 +34,13 @@ class Ganesh:
 
             for food in day.contents[1:]:
                 foodJsonData.append((
-                    self.parent.replaceStr(str(food.find_all("td", {"class": "jidlo"})[0]), ["<td class=\"jidlo\">", "</td>"]),
-                    self.parent.replaceStr(str(food.find_all("td", {"class": "cena"})[0]), ["<td class=\"cena\">", "</td>"])
+                    self.parent.removeStr(str(food.find_all("td", {"class": "jidlo"})[0]), ["<td class=\"jidlo\">", "</td>"]),
+                    self.parent.removeStr(str(food.find_all("td", {"class": "cena"})[0]), ["<td class=\"cena\">", "</td>"])
                 ))
 
             dayJsonData = {}
-            dayJsonData["soup"] = self.parent.replaceStr(str(day.contents[0].find_all("td", {"class": "jidlo"})[0]), ["<td class=\"jidlo\">", "</td>"])
-            dayJsonData["soupPrice"] = self.parent.replaceStr(str(day.contents[0].find_all("td", {"class": "cena"})[0]), ["<td class=\"cena\">", "</td>"])
+            dayJsonData["soup"] = self.parent.removeStr(str(day.contents[0].find_all("td", {"class": "jidlo"})[0]), ["<td class=\"jidlo\">", "</td>"])
+            dayJsonData["soupPrice"] = self.parent.removeStr(str(day.contents[0].find_all("td", {"class": "cena"})[0]), ["<td class=\"cena\">", "</td>"])
             dayJsonData["food"] = foodJsonData
 
             jsonData["days"].append(dayJsonData)

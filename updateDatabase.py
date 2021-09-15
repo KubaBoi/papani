@@ -154,7 +154,7 @@ class Updater:
         with open(path, "r") as f:
             return json.loads(f.read())
 
-    def replaceStr(self, string, arrStr):
+    def removeStr(self, string, arrStr):
         for a in arrStr:
             string = string.replace(a, "")
         return string
