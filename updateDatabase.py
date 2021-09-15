@@ -168,4 +168,4 @@ class Updater:
         return string
 
     def lastUpdate(self):
-        return "Last update:" + datetime.datetime.now().strftime("%S-%M-%H-%d-%m-%y")
+        return "Last update: " + datetime.datetime.now().strftime("%S-%M-%H-%d-%m-%y")

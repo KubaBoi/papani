@@ -9,18 +9,22 @@
 </head>
 
 <body>
-    <ul>
-        <li><a href="$actual$" class="unactive">Aktuální den</a></li>
-        <li><a href="index0.html" class="unactive">Pondělí</a></li>
-        <li><a href="index1.html" class="unactive">Úterý</a></li>
-        <li><a href="index2.html" class="unactive">Středa</a></li>
-        <li><a href="index3.html" class="unactive">Čtvrtek</a></li>
-        <li><a href="index4.html" class="unactive">Pátek</a></li>
-    </ul>
-    <h1>$name$</h1>
-    <button class="button" onclick="location.href='$url$';">Stránky restaurace</button>
     <div>
-        $content$
+        <ul>
+            <li><a href="$actual$" class="unactive">Aktuální den</a></li>
+            <li><a href="index0.html" class="unactive">Pondělí</a></li>
+            <li><a href="index1.html" class="unactive">Úterý</a></li>
+            <li><a href="index2.html" class="unactive">Středa</a></li>
+            <li><a href="index3.html" class="unactive">Čtvrtek</a></li>
+            <li><a href="index4.html" class="unactive">Pátek</a></li>
+        </ul>
     </div>
-    <p class="lastUpdate">$lastUpdate$</p>
+    <div style="margin-top: 50px">
+        <h1>$name$</h1>
+        <button class="button" onclick="location.href='$url$';">Stránky restaurace</button>
+        <div>
+            $content$
+        </div>
+        <p class="lastUpdate">$lastUpdate$</p>
+    </div>
 </body>
