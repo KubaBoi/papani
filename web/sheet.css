@@ -14,6 +14,9 @@ body {
 }
 
 ul {
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -63,6 +66,8 @@ ul {
 
   p.lastUpdate {
     color: var(--lastUpdateColor);
+    position: absolute;
+    right: 0;
   }
 
 table {
