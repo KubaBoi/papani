@@ -5,6 +5,7 @@ import datetime
 from scripts.kmp import KMP
 from scripts.buddha import Buddha
 from scripts.ganesh import Ganesh
+from scripts.martinska import Martinska
 
 class Updater:
     def __init__(self):
@@ -16,6 +17,7 @@ class Updater:
             self.services.append(KMP(urls["kmp"], self))
             self.services.append(Buddha(urls["buddha"], self))
             self.services.append(Ganesh(urls["ganesh"], self))
+            self.services.append(Martinska(urls["martinska"], self))
 
         self.loadTemplates()
 
