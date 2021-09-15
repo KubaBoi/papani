@@ -44,6 +44,16 @@ class Updater:
                 self.createHtml(data)
 
         self.createIndexes()
+        self.createIndex()
+
+    #vytvori index
+    def createIndex(self):
+        today = datetime.date.today()
+        actualWeekDay = str(int(today.strftime("%w")) - 1)
+        html = f"<head></head><body><script>window.location.href = \"web/index{actualWeekDay}.html\";</script></body>"
+
+        with open("index.html", "w") as f:
+            f.write(html)
 
     #vytvori index (jeden den pro vsechny restaurace)
     def createIndexes(self):
