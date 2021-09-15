@@ -6,7 +6,7 @@ class Kathmandu:
     def __init__(self, url, parent):
         self.url = url
         self.parent = parent
-        self.short = "05kathmandu"
+        self.short = "04kathmandu"
 
         self.soupPrice = "14 Kč"
 

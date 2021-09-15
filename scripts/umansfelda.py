@@ -6,7 +6,7 @@ class Umansfelda:
     def __init__(self, url, parent):
         self.url = url
         self.parent = parent
-        self.short = "06umansfelda"
+        self.short = "05umansfelda"
 
     def update(self):
         html = requests.get(self.url).text
