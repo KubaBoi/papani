@@ -1,16 +1,14 @@
 import json
 import os
 import datetime
-import time
 
 from restaurants.kmp import KMP
 from restaurants.buddha import Buddha
 from restaurants.ganesh import Ganesh
 
 class Updater:
-    def __init__(self, updateTime):
+    def __init__(self):
         self.services = []
-        self.updateTime = updateTime
         
         with open("./restaurants.json", "r") as f:
             urls = json.loads(f.read())
@@ -20,14 +18,6 @@ class Updater:
             self.services.append(Ganesh(urls["ganesh"], self))
 
         self.loadTemplates()
-
-    def runForever(self):
-        while True:
-            print("Updating database")
-            self.updateAll()
-            self.createHtmls()
-            print("Updated")
-            time.sleep(self.updateTime)
 
     def updateAll(self):
         for s in self.services:
