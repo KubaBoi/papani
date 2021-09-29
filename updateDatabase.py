@@ -27,7 +27,10 @@ class Updater:
 
     def updateAll(self):
         for s in self.services:
-            s.update()
+            try:
+                s.update()
+            except Exception as e:
+                print(e)
 
     def createHtmls(self):
         print("Creating htmls")
